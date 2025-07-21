@@ -14,6 +14,16 @@ class Character:
 
     def display_stats(self):
         print(f"{self.name}'s Stats - Health: {self.health}/{self.max_health}, Attack Power: {self.attack_power}")
+    
+    def heal(self):
+        if self.health < self.max_health - 30 and self.potion > 0:
+            self.health += 30
+            print(f"{self.name} took a healing potion and regerated 30 health! Current health: {self.health}")
+            self.potion -= 1
+        elif self.potion == 0:
+            print(f"{self.name} does not have any more healing potions")
+        else:
+            print(f"{self.name} has not taken enough damage to heal")
         
     
     
@@ -33,35 +43,13 @@ class Archer(Character):
                     print(f"{opponent.name} has been defeated!")
             else:
                 print(f"{self.name} is out of poison arrows, choose again")
-
-
-    
-    def heal(self):
-        if self.health < self.max_health - 30 and self.potion > 0:
-            self.health += 30
-            print(f"{self.name} took a healing potion and regerated 30 health! Current health: {self.health}")
-            self.potion -= 1
-        elif self.potion == 0:
-            print(f"{self.name} does not have any more healing potions")
-        else:
-            print(f"{self.name} has not taken enough damage to heal")
-        
   
 class Paladin(Character):
     def __init__(self, name):
         super().__init__(name, health=100, attack_power=35)
         self.potion = 1
         self.spattack = 2
-    
-    def heal(self):
-        if self.health < self.max_health and self.potion > 0:
-            self.health += 45
-            print(f"{self.name} is surrounded in a warm light and heals for 45 health! Current health: {self.health}")
-            self.potion -= 1
-        elif self.potion == 0:
-            print(f"{self.name} the heavens are occupied elsewhere")
-        else:
-            print(f"{self.name} has not taken enough damage to heal")
+
 
     def special_attack(self, opponent):
         special_damage = 35
@@ -81,16 +69,6 @@ class Warrior(Character):
         super().__init__(name, health=140, attack_power=45)
         self.potion = 1
         self.spattack = 2
-    
-    def heal(self):
-        if self.health < self.max_health - 30 and self.potion > 0:
-            self.health += 30
-            print(f"{self.name} took a healing potion and regerated 15 health! Current health: {self.health}")
-            self.potion -= 1
-        elif self.potion == 0:
-            print(f"{self.name} does not have any more healing potions")
-        else:
-            print(f"{self.name} has not taken enough damage to heal")
 
     def special_attack(self,opponent):
         special_damage = 35
@@ -110,15 +88,6 @@ class Mage(Character):
         self.potion = 1
         self.spattack = 2
 
-    def heal(self):
-        if self.health < self.max_health - 30 and self.potion > 0:
-            self.health += 30
-            print(f"{self.name} took a healing potion and regerated 30 health! Current health: {self.health}")
-            self.potion -= 1
-        elif self.potion == 0:
-            print(f"{self.name} does not have any more healing potions")
-        else:
-            print(f"{self.name} has not taken enough damage to heal")
 
     def special_attack(self,opponent):
         special_damage = 45
